@@ -1,9 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
-
-// ---------------------------------------------------------
-// 1. 初始資料 (更新為你的最新分類)
-// ---------------------------------------------------------
 
 const rawInitialData = [
   {
@@ -320,7 +316,7 @@ const rawInitialData = [
     },
     {
       title: "夫家對我太執著",
-      genre: ["歐式宮廷", "戀愛", "復仇", "契約結婚", "先婚後愛", "女主聰明", "粉髮女主", "藍髮男主"],
+      genre: ["歐式宮廷", "戀愛", "復仇", "契約結婚", "先婚後愛", "女主聰明", "粉髮女主", "黑髮男主"],
       author: "seungu , Han Yoon seol",
       description: "我的丈夫和家人，為了遺產謀殺了我。回到過去的我下定決心要拯救自己的性命及遺產。 我向受到家族詛咒、對財產和女人都毫無興趣的拉菲雷昂公爵，提出締結1年契約婚姻的提議。",
       image: "https://ppt.cc/f4noLx@jpg", 
@@ -425,7 +421,17 @@ const WHEEL_COLORS = ['#FFD1DC', '#E0BBE4', '#957DAD', '#D291BC', '#FEC8D8', '#F
 
 function App() {
   const [view, setView] = useState('home');
-
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const iframeRef = useRef(null);
+  useEffect(() => {
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      const command = isMusicPlaying ? 'playVideo' : 'pauseVideo';
+      iframeRef.current.contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: command
+      }), '*');
+    }
+  }, [isMusicPlaying]);
   const [mangaList, setMangaList] = useState(() => {
     const savedData = localStorage.getItem("myMangaList");
     
@@ -584,9 +590,7 @@ function App() {
 
   // 3. 轉盤與篩選邏輯
   const filteredManga = mangaList.filter(manga => {
-    // 標題搜尋
-    const keywordMatch = manga.title.includes(activeKeyword);
-    // 分類篩選
+    const keywordMatch = manga.title.includes(activeKeyword) || (manga.author && manga.author.includes(activeKeyword));
     const genreMatch = appliedFilters.length === 0 || appliedFilters.some(tag => manga.genre.includes(tag));
     return keywordMatch && genreMatch;
   });
@@ -667,6 +671,50 @@ function App() {
   // --- 畫面渲染 ---
   return (
     <div className="App">
+      <div style={{
+        position: 'fixed',
+        bottom: '0',
+        right: '0',
+        width: '1px',
+        height: '1px',
+        zIndex: 9999,
+        opacity: 0.001,
+        pointerEvents: 'none'
+      }}>
+        <iframe 
+          ref={iframeRef} 
+          width="100%" 
+          height="100%" 
+          src="https://www.youtube.com/embed/Qc_aZOS5Q7g?si=HIlFm02GJRosVBVD&enablejsapi=1&controls=0&loop=1&playlist=Qc_aZOS5Q7g" 
+          title="YouTube video player" 
+          frameBorder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerPolicy="strict-origin-when-cross-origin" 
+          allowFullScreen
+        ></iframe>
+      </div>
+
+      {/* --- 音樂開關按鈕 (懸浮在右下角) --- */}
+      <button 
+        onClick={() => setIsMusicPlaying(!isMusicPlaying)}
+        style={{
+          position: 'fixed',
+          bottom: '20px',
+          right: '20px',
+          zIndex: 9999,
+          backgroundColor: isMusicPlaying ? '#ff6b6b' : '#4caf50',
+          color: 'white',
+          border: 'none',
+          borderRadius: '50px',
+          padding: '12px 24px',
+          fontSize: '16px',
+          boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
+          cursor: 'pointer',
+          transition: 'all 0.3s'
+        }}
+      >
+        {isMusicPlaying ? '❚❚ 暫停音樂' : '▶ 播放 BGM'}
+      </button>
       <header style={{position: 'relative'}}>
         Romance漫畫篩選器
         <button className="nav-btn" onClick={() => setView(view === 'home' ? 'wheel' : 'home')}>

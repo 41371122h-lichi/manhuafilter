@@ -35,7 +35,9 @@ app.post('/api/upload-image', upload.single('mangaImage'), (req, res) => {
   if (!req.file) {
     return res.status(400).send('沒有檔案上傳。');
   }
-  const imagePath = `/uploads/${req.file.filename}`; 
+  const protocol = req.protocol;
+  const host = req.get('host'); 
+  const imagePath = `${protocol}://${host}/uploads/${req.file.filename}`;
 
   res.json({ 
       success: true, 
@@ -45,4 +47,8 @@ app.post('/api/upload-image', upload.single('mangaImage'), (req, res) => {
 
 app.get(/(.*)/, (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+app.listen(PORT, () => {
+  console.log(`伺服器運行於 port ${PORT}`);
 });
