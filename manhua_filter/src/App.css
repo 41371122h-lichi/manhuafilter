@@ -1,0 +1,447 @@
+/* src/App.css */
+:root {
+  --color-background: #f5e9ff; 
+  --color-primary: #9e87c4; 
+  --color-secondary: #8c73ff; 
+  --color-card-bg: white;
+  --color-text-dark: #333;
+}
+
+body {
+  background-color: var(--color-background);
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: var(--color-primary);
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+}
+
+/* --- 搜尋與篩選區 --- */
+#search-section {
+  padding: 15px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: white; 
+  margin: 20px auto;
+  max-width: 1240px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+#keyword {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--color-primary);
+  flex: 1;
+  min-width: 150px;
+}
+
+.dropdown-container { position: relative; }
+
+.dropdown-btn {
+  background-color: white;
+  padding: 10px 15px;
+  border: 1px solid var(--color-primary);
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  min-width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 100;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-top: 5px;
+  padding: 5px 0;
+}
+
+.dropdown-content label {
+  display: block;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.dropdown-content label:hover { background-color: #f0f0ff; }
+.dropdown-content input { margin-right: 8px; }
+
+/* --- 漫畫列表與卡片 --- */
+#manga-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+  gap: 20px;
+  padding: 20px;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.manga-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  overflow: hidden; 
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* 進場動畫 */
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.manga-card:hover { 
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.manga-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  background-color: #eee;
+  display: block;
+}
+
+.manga-card h3 {
+  margin: 15px 10px;
+  font-size: 16px;
+  color: var(--color-text-dark);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 新增卡片 */
+.add-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px; 
+  background-color: #f0f0ff; 
+  border: 2px dashed var(--color-primary);
+  color: var(--color-primary);
+  font-size: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.add-icon { font-size: 40px; font-weight: bold; margin-bottom: 10px; }
+
+/* --- Modal 視窗 --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px; 
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4); 
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.detail-content { display: flex; gap: 30px; align-items: flex-start; }
+.detail-content .image-wrapper { flex-shrink: 0; width: 40%; }
+.detail-content .info-wrapper { flex-grow: 1; width: 60%; }
+.detail-content img { width: 100%; height: 400px; object-fit: cover; border-radius: 8px; }
+
+/* 表單元件 */
+.modal-box input, .modal-box textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--color-primary);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.modal-box button {
+  background-color: var(--color-secondary);
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* 分類勾選區塊 (新增/編輯用) */
+.genre-selection-area {
+  background-color: #fafafa;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  margin-bottom: 15px;
+  text-align: left;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.genre-row {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: flex-start;
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 8px;
+}
+
+.genre-label {
+  font-weight: bold;
+  color: var(--color-primary);
+  width: 100px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.genre-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+  color: #555;
+  background: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.checkbox-label:hover {
+  background-color: #f0f0ff;
+  border-color: var(--color-primary);
+}
+
+.checkbox-label input {
+  margin-right: 5px;
+  width: auto !important; 
+  margin-bottom: 0 !important;
+}
+
+/* RWD for Modal */
+@media (max-width: 768px) {
+  .detail-content { flex-direction: column; }
+  .detail-content .image-wrapper, .detail-content .info-wrapper { width: 100%; }
+}
+
+/* --- 右上角切換按鈕 --- */
+.nav-btn {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  color: var(--color-primary);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: all 0.2s;
+}
+
+.nav-btn:hover {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+/* --- 轉盤頁面 (左右排版) --- */
+.wheel-wrapper {
+  display: flex;
+  flex-direction: row; 
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px;
+  min-height: 80vh;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+/* 結果顯示區 */
+.result-display {
+  width: 100%;
+  text-align: center;
+  background-color: white;
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  border: 2px solid var(--color-primary);
+  animation: popIn 0.5s ease-out;
+  max-width: 600px;
+}
+
+.result-display h3 { margin: 0; color: #666; font-size: 14px; }
+.result-display h1 { margin: 5px 0 0 0; color: var(--color-secondary); font-size: 24px; }
+
+/* 轉盤容器 */
+.wheel-container {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  flex-shrink: 0;
+  margin-bottom: 20px;
+}
+
+/* 轉盤本體 */
+.wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 5px solid white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  transition: transform 4s cubic-bezier(0.1, 0.7, 0.1, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 指針 */
+.needle {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; 
+  height: 0; 
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 30px solid #ff4444;
+  z-index: 10;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+}
+
+/* 轉盤文字標籤 (向外輻射) */
+.wheel-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 45%;
+  height: 20px;
+  margin-top: -10px;
+  transform-origin: 0% 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  pointer-events: none;
+}
+
+.wheel-text {
+  font-size: 14px;
+  font-weight: bold;
+  color: #444;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.9);
+}
+
+/* 右側控制區 */
+.wheel-controls {
+  flex: 1;
+  max-width: 400px;
+  min-width: 300px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.wheel-input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.wheel-list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  background: white;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.wheel-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+
+.delete-btn {
+  background: #ffcccc;
+  color: #cc0000;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* 手機版適配：轉盤頁面 */
+@media (max-width: 850px) {
+  .wheel-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .wheel-container {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 30px;
+  }
+  
+  .wheel-controls {
+    width: 100%;
+  }
+}
