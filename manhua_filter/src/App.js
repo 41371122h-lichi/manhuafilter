@@ -549,7 +549,7 @@ function App() {
       formData.append('mangaImage', uploadFile);
 
       try {
-        const res = await fetch('http://localhost:5000/api/upload-image', {
+        const res = await fetch('/api/upload-image', {
           method: 'POST',
           body: formData,
         });
