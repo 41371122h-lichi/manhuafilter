@@ -736,7 +736,7 @@ function App() {
             <input 
               type="text" 
               id="keyword" 
-              placeholder="搜尋漫畫..." 
+              placeholder="輸入漫畫或作家名稱..." 
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)} 
               onKeyPress={(e) => {
