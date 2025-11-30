@@ -103,7 +103,7 @@ const rawInitialData = [
       genre: ["現代職場", "自由戀愛", "轉世", "奇幻", "神怪", "女主聰明", "棕髮女主", "棕髮男主"],
       author: "李惠",
       description: "轉世第18次的她，第一次出現想記下來的人，卻因為命運已定不得不離開…今世的她不僅家庭背景改變，容貌也截然不同…到底能不能成功找回那個他呢？",
-      image: "https://ppt.cc/f4KMEx@jpg", 
+      image: "https://ppt.cc/fPTwLx@jpg", 
       link: "https://www.webtoons.com/zh-hant/adaptation/see-you-in-my-19th-life/list?title_no=2080"
     },
     {
