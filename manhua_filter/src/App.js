@@ -857,6 +857,9 @@ function App() {
       {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={closeModal}>
+              &times;
+            </button>
             
             {/* 1. 詳細資訊模式 */}
             {modalType === 'detail' && currentManga && (
