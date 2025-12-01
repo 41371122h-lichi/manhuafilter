@@ -860,6 +860,7 @@ function App() {
             <button 
               onClick={closeModal}
               style={{
+                width: 'auto',
                 position: 'absolute',  /* 絕對定位：讓它浮起來 */
                 top: '10px',           /* 距離上面 10px */
                 right: '15px',         /* 距離右邊 15px */
