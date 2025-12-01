@@ -447,45 +447,38 @@ header {
 }
 
 .modal-close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  position: absolute;  
+  top: 10px; 
+  right: 15px; 
 
-  width: 32px;
-  height: 32px;
-
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.5); 
-  color: white;
+  width: auto;      
+  height: auto;
+  margin: 0;
+  padding: 0;
   
-  border: none;
-  font-size: 20px;
-  line-height: 1;
+  background: none !important; 
+  border: none !important;      
+  box-shadow: none !important;  
+  
+  font-size: 32px;    
+  line-height: 1;    
+  color: #aaa;       
+  font-weight: bold; 
   cursor: pointer;
-  z-index: 1001; 
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 2000;   
 }
 
 .modal-close-btn:hover {
-  background-color: rgba(0, 0, 0, 0.7);
+  color: #333;
+  transform: scale(1.1); 
 }
 
 /* 手機版微調：確保按鈕不會被圖片蓋住太難按 */
 @media (max-width: 768px) {
   .modal-close-btn {
     top: 5px;
-    right: 5px;
-    font-size: 36px; 
-    color: #333;  
-    background-color: rgba(255, 255, 255, 0.8); 
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    right: 10px;
+    font-size: 40px;  /* 手機上再大一點才好按 */
+    color: #666;      /* 手機上深一點比較明顯 */
   }
 }
