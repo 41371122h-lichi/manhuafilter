@@ -861,17 +861,17 @@ function App() {
               onClick={closeModal}
               style={{
                 width: 'auto',
-                position: 'absolute',  /* 絕對定位：讓它浮起來 */
-                top: '10px',           /* 距離上面 10px */
-                right: '15px',         /* 距離右邊 15px */
-                background: 'transparent', /* 透明背景 */
-                border: 'none',        /* 去框 */
-                fontSize: '30px',      /* 字體大小 */
-                color: '#747474ff',         /* 顏色 */
-                cursor: 'pointer',     /* 滑鼠手勢 */
-                zIndex: 1000,          /* 確保在最上面 */
-                padding: 0,            /* 清除內距 */
-                lineHeight: 1          /* 避免行高撐大 */
+                position: 'absolute',  
+                top: '10px',        
+                right: '15px',       
+                background: 'transparent',
+                border: 'none',      
+                fontSize: '30px',   
+                color: '#747474ff',     
+                cursor: 'pointer',  
+                zIndex: 1000,        
+                padding: 0,     
+                lineHeight: 1    
               }}
             >
               &times;
