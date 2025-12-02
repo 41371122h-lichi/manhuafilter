@@ -557,7 +557,6 @@ function App() {
       formData.append('mangaImage', uploadFile);
 
       try {
-        // ★ 修正點：使用相對路徑，解決 Render 上傳圖片路徑錯誤的問題
         const res = await fetch('/api/upload-image', {
           method: 'POST',
           body: formData,
