@@ -35,6 +35,7 @@ app.post('/api/upload-image', upload.single('mangaImage'), (req, res) => {
   if (!req.file) {
     return res.status(400).send('沒有檔案上傳。');
   }
+
   const imagePath = `/uploads/${req.file.filename}`;
 
   res.json({ 

@@ -557,7 +557,8 @@ function App() {
       formData.append('mangaImage', uploadFile);
 
       try {
-        const res = await fetch('http://localhost:5000/api/upload-image', {
+        // ★ 修正點：使用相對路徑，解決 Render 上傳圖片路徑錯誤的問題
+        const res = await fetch('/api/upload-image', {
           method: 'POST',
           body: formData,
         });
@@ -861,17 +862,17 @@ function App() {
               onClick={closeModal}
               style={{
                 width: 'auto',
-                position: 'absolute',  
-                top: '10px',        
-                right: '15px',       
-                background: 'transparent',
+                position: 'absolute', 
+                top: '10px',           
+                right: '15px',      
+                background: 'transparent', 
                 border: 'none',      
-                fontSize: '30px',   
-                color: '#747474ff',     
-                cursor: 'pointer',  
-                zIndex: 1000,        
-                padding: 0,     
-                lineHeight: 1    
+                fontSize: '30px',     
+                color: '#747474ff',   
+                cursor: 'pointer',   
+                zIndex: 1000,         
+                padding: 0,          
+                lineHeight: 1         
               }}
             >
               &times;
