@@ -599,7 +599,7 @@ function App() {
   // 3. 轉盤與篩選邏輯
   const filteredManga = mangaList.filter(manga => {
     const keywordMatch = manga.title.includes(activeKeyword) || (manga.author && manga.author.includes(activeKeyword));
-    const genreMatch = appliedFilters.length === 0 || appliedFilters.some(tag => manga.genre.includes(tag));
+    const genreMatch = appliedFilters.length === 0 || appliedFilters.every(tag => manga.genre.includes(tag));
     return keywordMatch && genreMatch;
   });
 
