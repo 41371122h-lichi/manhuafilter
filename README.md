@@ -1,7 +1,6 @@
 # manhuafilter
 
-**前端架構**
-
+前端架構
 ---
 負責使用者看到的畫面、互動邏輯與資料呈現。
 
@@ -27,8 +26,7 @@ Animations：使用 @keyframes 製作轉盤旋轉、卡片淡入與彈窗效果�
 
 篩選器：實作多條件標籤篩選 (Tag Filtering)。
 
-**後端架構**
-
+後端架構
 ---
 負責處理檔案上傳與提供 API 服務。
 
@@ -50,8 +48,7 @@ API 設計：RESTful API
 
 解決了跨域問題 (CORS) 與 混合內容問題 (Mixed Content)，使用相對路徑 (/uploads/...) 來確保在 HTTPS 環境下圖片能正常顯示。
 
-**API串接**
-
+API串接
 ---
 交換資料：Restful API
 
@@ -61,8 +58,7 @@ API 設計：RESTful API
 
 通訊方式：透過 React 的 useRef 取得 iframe 實體，並使用 postMessage 發送 playVideo / pauseVideo 指令，實現「背景播放、切換頁面不中斷、可暫停續播」的高級功能。
 
-**部署架構**
-
+部署架構
 ---
 平台：Render (Web Service)
 
