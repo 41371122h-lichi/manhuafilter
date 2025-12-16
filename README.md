@@ -1,6 +1,7 @@
 # manhuafilter
 
-1. 前端架構 (Frontend)
+前端架構
+---
 負責使用者看到的畫面、互動邏輯與資料呈現。
 
 核心框架：React.js
@@ -25,7 +26,8 @@ Animations：使用 @keyframes 製作轉盤旋轉、卡片淡入與彈窗效果�
 
 篩選器：實作多條件標籤篩選 (Tag Filtering)。
 
-2. 後端架構 (Backend)
+後端架構
+---
 負責處理檔案上傳與提供 API 服務。
 
 執行環境：Node.js
@@ -46,14 +48,18 @@ API 設計：RESTful API
 
 解決了跨域問題 (CORS) 與 混合內容問題 (Mixed Content)，使用相對路徑 (/uploads/...) 來確保在 HTTPS 環境下圖片能正常顯示。
 
-3. 第三方串接 (3rd Party Integration)
+API串接
+---
+交換資料：Restful API
+
 背景音樂：YouTube IFrame Player API
 
 技術細節：不使用一般的 autoplay，而是利用 enablejsapi=1 參數開啟控制權。
 
 通訊方式：透過 React 的 useRef 取得 iframe 實體，並使用 postMessage 發送 playVideo / pauseVideo 指令，實現「背景播放、切換頁面不中斷、可暫停續播」的高級功能。
 
-4. 部署架構 (Deployment)
+部署架構
+---
 平台：Render (Web Service)
 
 架構模式：單體式全端部署 (Monolithic Deployment)
@@ -61,5 +67,3 @@ API 設計：RESTful API
 前端 React 經過 npm run build 打包成靜態檔案。
 
 後端 Express 透過 app.use(express.static(...)) 統一對外服務。
-
-這意味著同一個伺服器 (Port 5000) 同時負責「顯示網頁」和「提供 API」，是一個非常高效率且適合中小型專案的架構。
